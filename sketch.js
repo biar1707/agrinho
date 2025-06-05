@@ -42,7 +42,7 @@ function palavraAleatoria() {
 
 function inicializaCores() {
   background("#5BC5F5");
-  fill("blue");
+  fill("white");
   textSize(64);
   textAlign(CENTER, CENTER);
 }
