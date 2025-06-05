@@ -9,26 +9,27 @@ function draw() {
   inicializaCores();
   let texto = palavraParcial(0, width);
   text(texto, 200, 400);
+    
   //retângulo
- stroke("#009688");
- fill("#9FE64C");
- square(20,20,50,100);
+ stroke("yellow");
+ fill("yellow");
+ circle(50,50,50,100);
   //círculo
-  stroke("#8BC34A");
+  
+  stroke("grey");
  fill("#4CAF50");
- triangle(150,70,100);
+ triangle(100,400,100);
   //triângulo
  
- triangle(300, 50, 400, 120, 200, 120); //largura, altura, reta AB, reta BC
+ triangle(100,200,0, 350,200, 350); //largura, altura, reta AB, reta BC
+  
    //quadrado
- 
- square(150,200,100); //apenas largura, altura e um dos lados, visto que todos são iguais
+ fill("#CAC9C9")
+ rect(300,150,100,200); //apenas largura, altura e um dos lados, visto que todos são iguais
   //linha
   
-  ellipse(300,200, 100,30);
-
- stroke(" ");
- fill(" ");
+ stroke("black");
+ fill("black");
   line(10,350,400,350); //largura e altura do início e fim da linha
 }
 
@@ -40,8 +41,8 @@ function palavraAleatoria() {
 }
 
 function inicializaCores() {
-  background("green");
-  fill("#8BC34A");
+  background("#5BC5F5");
+  fill("blue");
   textSize(64);
   textAlign(CENTER, CENTER);
 }
