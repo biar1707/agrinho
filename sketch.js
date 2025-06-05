@@ -1,49 +1,66 @@
-let palavra
+let playerX = 50;
+let playerY = 200;
+let obstacleX;
+let obstacleY;
+let pontos = 0;
 
 function setup() {
-  createCanvas(800, 800);
-  palavra = palavraAleatoria();
+  createCanvas(600, 400);
+  obstacleX = random(150, 450);
+  obstacleY = random(50, 350);
 }
 
 function draw() {
-  inicializaCores();
-  let texto = palavraParcial(0, width);
-  text(texto, 200, 400);
-    
- stroke("yellow");
- fill("yellow");
- circle(50,50,50,100);
-  
-  stroke("grey");
- fill("#4CAF50");
- triangle(100,400,100);
- 
- triangle(100,200,0, 350,200, 350); 
-  
- fill("#CAC9C9")
- rect(300,150,100,200);
-  
- stroke("black");
- fill("black");
-  line(10,350,400,350); 
+  background(200, 230, 255);
+
+  // Cidade (esquerda) e Campo (direita)
+  fill(150);
+  rect(0, 0, 60, height); // cidade
+  fill(0, 200, 0);
+  rect(width - 60, 0, 60, height); // campo
+
+  // Player
+  fill(255, 0, 0);
+  rect(playerX, playerY, 20, 20);
+
+  // Obstáculo
+  fill(100);
+  rect(obstacleX, obstacleY, 30, 30);
+
+  // Movimentação
+  if (keyIsDown(UP_ARROW)) playerY -= 3;
+  if (keyIsDown(DOWN_ARROW)) playerY += 3;
+  if (keyIsDown(LEFT_ARROW)) playerX -= 3;
+  if (keyIsDown(RIGHT_ARROW)) playerX += 3;
+
+  // Limites da tela
+  playerX = constrain(playerX, 0, width - 20);
+  playerY = constrain(playerY, 0, height - 20);
+
+  // Verificar chegada no campo
+  if (playerX > width - 80) {
+    pontos++;
+    resetarPosicao();
+  }
+
+  // Verificar colisão
+  if (playerX < obstacleX + 30 &&
+      playerX + 20 > obstacleX &&
+      playerY < obstacleY + 30 &&
+      playerY + 20 > obstacleY) {
+    pontos = max(0, pontos - 1);
+    resetarPosicao();
+  }
+
+  // Mostrar pontos
+  fill(0);
+  textSize(18);
+  text("Pontos: " + pontos, 10, 20);
 }
 
-function palavraAleatoria() {
- 
-  let palavras = ["CCM EDITE", "Agrinho 2025", "Turvo-Paraná", "Juntos somos mais", "A cidade precisa do campo", "O campo precisa da cidade"];
- 
-  return random(palavras);
-}
-
-function inicializaCores() {
-  background("#5BC5F5");
-  fill("white");
-  textSize(64);
-  textAlign(CENTER, CENTER);
-}
-
-function palavraParcial(minimo, maximo) {
-  let quantidade = map(mouseX, minimo, maximo, 1, palavra.length);
-  let parcial = palavra.substring(0, quantidade);
-  return parcial;
+function resetarPosicao() {
+  playerX = 50;
+  playerY = 200;
+  obstacleX = random(150, 450);
+  obstacleY = random(50, 350);
 }
