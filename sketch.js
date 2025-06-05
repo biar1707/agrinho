@@ -35,7 +35,7 @@ function draw() {
 
 function palavraAleatoria() {
  
-  let palavras = ["CCM EDITE", "agrinho 2025", "juntos somos mais", "a cidade precisa do campo", "o campo precisa da cidade"];
+  let palavras = ["CCM EDITE", "Agrinho 2025", "Turvo-Paraná", "Juntos somos mais", "A cidade precisa do campo", "O campo precisa da cidade"];
  
   return random(palavras);
 }
